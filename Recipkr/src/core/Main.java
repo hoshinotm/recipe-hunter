@@ -9,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -24,8 +25,9 @@ import myutils.ReportingUtils;
 
 public class Main extends Application {
 
-    RecipeDataAccess dataAccess;
+    public RecipeDataAccess dataAccess;
 
+    private CoreSettings coreSetting;
     protected ErrorLog errorLog;
     protected ReportingUtils debug;
 
@@ -33,14 +35,14 @@ public class Main extends Application {
             "/Develop/Eclipse/DukeRecommender/SimpleHTTPClientExperiment/images/";
     private final static String KEYWORD_INPUT_PROMPT = "Enter a keyword here";
 
-
-    private static final String DEFAULT_CSS_SPEC =
-            "-fx-background-image: url(\"file://" +
-            IMAGE_FILE_FOLDER +
-//            "carrots.jpg" +
-//            "green-pepper.jpg" +
-            "red-chilli.jpg" +
-            "\"); ";
+//
+//    private static final String DEFAULT_CSS_SPEC =
+//            "-fx-background-image: url(\"file://" +
+//            IMAGE_FILE_FOLDER +
+////            "carrots.jpg" +
+////            "green-pepper.jpg" +
+//            "red-chilli.jpg" +
+//            "\"); ";
 
     // main() is invoked first.
     // The main() method is not required for JavaFX applications
@@ -66,23 +68,29 @@ public class Main extends Application {
 
         Stage theStage = primaryStage;
 
+        this.coreSetting = new CoreSettings( theStage );
+
         // Define key search UI containers
         SearchKeyInputPane searchKeyInputPane =
                 new SearchKeyInputPane();
+        searchKeyInputPane.getStyleClass().add("pane");
+
         SearchKeyInputScene searchKeyInputScene =
                 new SearchKeyInputScene( searchKeyInputPane );
-        searchKeyInputPane.setStyle( DEFAULT_CSS_SPEC );
+//        searchKeyInputPane.setStyle( DEFAULT_CSS_SPEC );
         searchKeyInputScene.getStylesheets().add
-                (Main.class.getResource("SearchKeyInput.css" ).toExternalForm());
+                (Main.class.getResource( UISettings.searchKeyInputCSSFile ).toExternalForm());
 
         // Define recipe header display containers
         RecipeHeaderListPane recipeHeaderListPane =
                 new RecipeHeaderListPane();
-        recipeHeaderListPane.setStyle( DEFAULT_CSS_SPEC );
+        recipeHeaderListPane.getStyleClass().add("pane");
+
+//        recipeHeaderListPane.setStyle( DEFAULT_CSS_SPEC );
         RecipeHeaderListScene recipeHeaderListScene =
                 new RecipeHeaderListScene( recipeHeaderListPane );
         recipeHeaderListScene.getStylesheets().add
-                (Main.class.getResource("RecipeHeaderList.css" ).toExternalForm());
+                (Main.class.getResource(UISettings.clearKeyInputCSSFile ).toExternalForm());
         RecipeDisplayScene recipeDisplayScene =
                 new RecipeDisplayScene( theStage, new Browser() );
 
@@ -98,7 +106,6 @@ public class Main extends Application {
                 new SearchKeyInputField( searchKeyInputPane,
                         KEYWORD_INPUT_PROMPT ); //TODO Doesn't show
         searchKeyInputField.setEditable( true );
-        searchKeyInputField.requestFocus();  // TODO Doesn't work
 
         // Define buttons for sending keyword input
         KeySearchButton keySearchButton =
@@ -140,15 +147,18 @@ public class Main extends Application {
         hBox1.getChildren().add( searchKeyInputField );
         // 2nd one for the keyword search and clear buttons
         HBox hBox2 = new HBox();
+        hBox2.setSpacing( 5 );
         hBox2.getChildren().addAll( keySearchButton, keyClearButton );
         // Arrange the two horizonal boxes vertically
         VBox vBox = new VBox( hBox0, hBox1, hBox2 );
+        vBox.setSpacing( 5 );
         // Paste the whole thing onto the keyword input pane
         searchKeyInputPane.getChildren().add( vBox );
         // Title the stage, then attach the scene to the stage.
         Label appTitle = new Label("Recipkr");
         appTitle.setFont( UISettings.titleFont );
 
+        searchKeyInputField.requestFocus();
         theStage.setTitle( appTitle.toString() );
         theStage.setScene( searchKeyInputScene );
         theStage.show();

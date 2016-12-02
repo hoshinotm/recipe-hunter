@@ -1,0 +1,22 @@
+.body {
+    /*
+    -fx-font: 20px "Calibri";
+    */
+    -fx-padding: 20px;
+    -fx-background-color: "blue";
+    -fx-background-image: url("file:///Develop/Eclipse/DukeRecommender/SimpleHTTPClientExperiment/images/red-chili.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+    -fx-padding:10px;"
+    /*
+    -fx-font-family: "MrsSaintDelafield";
+    */
+    -fx-font: 14px "MrsSaintDelafield-Regular";
+}
+
+.button {
+    -fx-font: 20px "Calibri";
+    -fx-padding: 10px;
+    -fx-background-color: "lightgrey";
+}

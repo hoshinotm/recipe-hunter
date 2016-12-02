@@ -1,0 +1,45 @@
+body {
+
+    -fx-font: 20px "Calibri";
+    -fx-padding: 20px;
+    /*
+    -fx-background-image: url("file:///Develop/Eclipse/DukeRecommender/SimpleHTTPClientExperiment/images/red-chili.jpg");
+    */
+    -fx-background-image: url("red-chili.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: 900 506;
+    -fx-background-position: center center;
+    /*
+    -fx-font-family: "MrsSaintDelafield";
+    */
+    /*
+    -fx-font: 14px "MrsSaintDelafield-Regular";
+    */
+}
+
+/* Not working */
+.pane {
+    -fx-background-color: "lightgrey" /*rgb( 100,100,100, .5 )*/;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+}
+
+.hbox {
+    -fx-padding: 15;
+    -fx-spacing: 10;
+}
+
+.vbox {
+
+}
+
+.button {
+    -fx-font: 15px "Calibri";
+    -fx-padding: 10px;
+    -fx-background-color: "red";
+    -fx-text-fill: rgb(200, 200, 200);
+    -fx-border-color: rgb(49, 89, 23);
+    -fx-border-radius: 5;
+    -fx-padding: 3 6 6 6;
+    -fx-effect: dropshadow( one-pass-box , black , 8 , 0.0 , 2 , 0 );
+}
