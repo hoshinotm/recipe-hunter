@@ -11,3 +11,5 @@ its local user database through JDBC but can be modified to use a remote databas
 without much effort. JavaFX containers are currently configured mostly programmatically, 
 and it's being transitioned to define the containers through FXML files generated with
 Scene Builder. 
+
+See Recipikr/src for the source files.
