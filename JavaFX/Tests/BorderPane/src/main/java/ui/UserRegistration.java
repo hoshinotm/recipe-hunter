@@ -21,9 +21,6 @@ import myutils.FXMLUtils;
 
 import javax.xml.stream.Location;
 
-/**
- * Created by takayukihoshino on 4/3/17.
- */
 public class UserRegistration {
 
     private boolean newUserIsRegistered;
