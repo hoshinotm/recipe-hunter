@@ -1,4 +1,14 @@
-package core;
+/**********************************
+ **
+ **  JavaFX application to search a recipe database by a keyword, show a 
+ **  list of recipes, display web pages with user-selected recipes, 
+ **  and text user-elected recipe links to user if desired. 
+ **  Supports user registlation and verification of their cell numbers.
+ **  User data is stored in a database with password digests for future
+ **  logins and optional texting of recipe links.
+ **  
+ **/
+ package core;
 
 import java.util.ArrayList;
 
@@ -22,7 +32,6 @@ import UI.*;
 import myutils.ErrorLog;
 import myutils.ReportingUtils;
 
-
 public class Main extends Application {
 
     public RecipeDataAccess dataAccess;
@@ -35,27 +44,12 @@ public class Main extends Application {
             "/Develop/Eclipse/DukeRecommender/SimpleHTTPClientExperiment/images/";
     private final static String KEYWORD_INPUT_PROMPT = "Enter a keyword here";
 
-//
-//    private static final String DEFAULT_CSS_SPEC =
-//            "-fx-background-image: url(\"file://" +
-//            IMAGE_FILE_FOLDER +
-////            "carrots.jpg" +
-////            "green-pepper.jpg" +
-//            "red-chilli.jpg" +
-//            "\"); ";
-
-    // main() is invoked first.
-    // The main() method is not required for JavaFX applications
-    // when the JAR file is created using JavaFX Packager tool.
-    // JavaFX Packager tool would embed the JavaFX Launcher in
-    // the JAR file.
     public static void main(String[] args) {
         System.out.println("I'm in main()");
         launch(args);
     }
 
-    // Then init()
-    // No scene may be crated in init()
+    // For JavaFX
     @Override
     public void init() {
         printParams( this.getParameters() );
@@ -77,7 +71,6 @@ public class Main extends Application {
 
         SearchKeyInputScene searchKeyInputScene =
                 new SearchKeyInputScene( searchKeyInputPane );
-//        searchKeyInputPane.setStyle( DEFAULT_CSS_SPEC );
         searchKeyInputScene.getStylesheets().add
                 (Main.class.getResource( UISettings.searchKeyInputCSSFile ).toExternalForm());
 
@@ -86,7 +79,6 @@ public class Main extends Application {
                 new RecipeHeaderListPane();
         recipeHeaderListPane.getStyleClass().add("pane");
 
-//        recipeHeaderListPane.setStyle( DEFAULT_CSS_SPEC );
         RecipeHeaderListScene recipeHeaderListScene =
                 new RecipeHeaderListScene( recipeHeaderListPane );
         recipeHeaderListScene.getStylesheets().add
@@ -94,14 +86,10 @@ public class Main extends Application {
         RecipeDisplayScene recipeDisplayScene =
                 new RecipeDisplayScene( theStage, new Browser() );
 
-
-
-        // TODO Is "dataAccess" necessary?
+        // Estblish connection to database
         this.dataAccess = new RecipeDatabase( RecipeDataSource.FOOD2FORK );
 
-        // final List<String> paramList = this.getParameters().getRaw();
-
-        // Define text input field for search key
+        // Set up keyword input field
         SearchKeyInputField searchKeyInputField =
                 new SearchKeyInputField( searchKeyInputPane,
                         KEYWORD_INPUT_PROMPT ); //TODO Doesn't show
@@ -129,7 +117,6 @@ public class Main extends Application {
         );
 
         // TODO Generate clickable attribution
-
         TextFlow attribution = generateAttribution( "Powered By ",
                                                      dataAccess.getSourceName(),
                                                      dataAccess.getSourceWebURL(),
